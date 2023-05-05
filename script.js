@@ -18,6 +18,7 @@ function numbersWithCommas(x) {
 }
 
 function displayMatches() {
+
   const matchArray = findMatches(this.value, cities);
   const html = matchArray.map(place => {
     const regex = new RegExp(this.value, 'gi');
@@ -41,6 +42,11 @@ async function setup() {
   await fetchCities();
   searchInput.addEventListener('change', displayMatches);
   searchInput.addEventListener('keyup', displayMatches);
+  searchInput.addEventListener('keydown', (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  });
 }
 
 setup();
